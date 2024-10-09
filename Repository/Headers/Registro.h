@@ -5,6 +5,12 @@
 
 class Registro {
 
+protected:
+    Data* data;
+    bool entrada;
+    bool manual;
+
+public:
     Registro(Data* d, bool entrada, bool manual);
     virtual ~Registro();
 
