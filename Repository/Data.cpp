@@ -16,6 +16,15 @@ this->ano = ano;
 
 Data::~Data(){}
 
+int Data::diferenca(Data* d) { 
+//retorna a diferenca em segundos entre a data atual e a data recebida
+    
+
+
+}
+
+
+
 int Data::getHora() {
     return hora;
 }
@@ -38,11 +47,4 @@ int Data::getMes() {
 
 int Data::getAno() {
     return ano;
-}
-
-int Data::diferenca(Data* d) { 
-//retorna a diferenca em segundos entre a data atual e a data recebida
-    
-
-
 }
