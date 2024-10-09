@@ -99,3 +99,11 @@ Registro* *Usuario::getRegistros() {
 int Usuario::getQuantidade() {
     return this->quantidade;
 }
+
+
+Usuario::~Usuario(){    
+    for(int i = quantidade; i >= 0; i--) {
+        delete registros[i];
+    }
+    delete registros;
+}
