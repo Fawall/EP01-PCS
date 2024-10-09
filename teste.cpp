@@ -6,9 +6,6 @@ using namespace std;
 
 void teste() {
 
-    time_t t;
-    time(&t); //pegar o tempo desde 70 (atual)
-
     tm *d1 = new tm(); //criei um obj data
 
     d1->tm_hour = 10;
@@ -19,10 +16,9 @@ void teste() {
     d1->tm_mon = 10 - 1;
     d1->tm_year = 2024 - 1900;
 
-    time_t t1 = mktime(d1); //peguei o obj data e fiz virar um horario (convercao)
+    Data * data = new Data(d1->tm_hour,d1->tm_min,d1->tm_sec,d1->tm_yday,d1->tm_mon,d1->tm_year);
     
-    int diferenca = (int) difftime(t,t1); //(time_t inicio, time_t fim)
-
+    int diferenca = data->Data::diferenca(data);
     cout << diferenca << endl;
 
     //struct tm *tAtual; //eh necessario criar por conta do asctime
