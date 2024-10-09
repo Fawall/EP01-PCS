@@ -17,3 +17,7 @@ bool Registro::isManual() {
 Data* Registro::getData() {
     return this->data;
 }
+
+Registro::~Registro() {
+    delete this->data;
+}
