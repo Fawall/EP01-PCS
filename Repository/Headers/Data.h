@@ -3,6 +3,15 @@
 
 class Data {
 
+private:
+
+    int hora=0;
+    int minuto=0;
+    int segundo=0;
+    int dia=0;
+    int mes=0;
+    int ano=0;
+
 public:
 
     Data (int hora, int minuto, int segundo, int dia, int mes, int ano);
