@@ -13,3 +13,7 @@ bool Registro::isEntrada() {
 bool Registro::isManual() {
     return this->manual;
 }
+
+Data* Registro::getData() {
+    return this->data;
+}
