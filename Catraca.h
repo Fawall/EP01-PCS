@@ -8,9 +8,6 @@ class Catraca
 
 protected:
     GerenciadorDeUsuario* g;
-    int id;
-    Data* d;
-
 
 public:
     Catraca(GerenciadorDeUsuario* g);
