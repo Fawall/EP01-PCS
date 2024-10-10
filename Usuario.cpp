@@ -1,4 +1,4 @@
-#include "Headers/Usuario.h"
+#include "Usuario.h"
 
 Usuario::Usuario(int id, string nome, int maximo) {
     this->id = id;
