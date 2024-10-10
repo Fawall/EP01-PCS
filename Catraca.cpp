@@ -25,3 +25,5 @@ bool Catraca::sair(int id, Data* d) {
     }
     return false;
 }
+
+Catraca::~Catraca() { }
