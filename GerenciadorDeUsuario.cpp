@@ -41,3 +41,10 @@ Usuario* GerenciadorDeUsuario::getUsuarios() {
 int GerenciadorDeUsuario::getQuantidade() {
     return quantidade;
 }
+
+GerenciadorDeUsuario::~GerenciadorDeUsuario(){
+    for(int i = 0; i < quantidade; i++){
+        delete usuarios[i];
+    }
+    delete usuarios;
+}
