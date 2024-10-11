@@ -5,8 +5,14 @@ Usuario::Usuario(int id, string nome, int maximo) {
     this->nome = nome;
     this->maximo = maximo;
     this->registros = new Registro*[maximo];
-}   
+} 
 
+Usuario::~Usuario(){    
+    for(int i = quantidade; i >= 0; i--) {
+        delete registros[i];
+    }
+    delete registros;
+}
 
 string Usuario::getNome() {
     return this->nome;
@@ -99,10 +105,14 @@ int Usuario::getQuantidade() {
     return this->quantidade;
 }
 
+int Usuario::getHorasTrabalhadas(int mes, int ano) {
 
-Usuario::~Usuario(){    
-    for(int i = quantidade; i >= 0; i--) {
-        delete registros[i];
-    }
-    delete registros;
+    cout << diferenca << endl; //confira se ele ta trucado (ex: 10.5 saindo como 10)
+    
+    diferenca = diferenca/60;
+
+
+
+    return -1;
+
 }
