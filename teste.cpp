@@ -46,6 +46,7 @@ void testeRegistro(){
 }
 
 void testeGerenciador(){
+    
     GerenciadorDeUsuario* g = new GerenciadorDeUsuario(10);
 
     g->adicionar(new Usuario(1,"Joao",10));
