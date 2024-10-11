@@ -3,21 +3,26 @@
 
 #include "Usuario.h"
 
-class GerenciadorDeUsuario {
-private:
-    int maximo=0;
+class GerenciadorDeUsuario
+{
+
+protected:
+    int maximo;
+    Usuario **usuarios;
+    int quantidade;
 
 public:
     GerenciadorDeUsuario(int maximo);
     virtual ~GerenciadorDeUsuario();
 
     bool adicionar(Usuario* u);
-
     Usuario* getUsuario(int id);
-    Usuario** getUsuarios();
-    int getQuantidade(); 
+    Usuario* getUsuarios();
+    
+    int getQuantidade();
 
 
 };
+
 
 #endif
