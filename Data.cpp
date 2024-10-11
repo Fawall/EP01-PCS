@@ -1,7 +1,7 @@
 #include <ctime>
 #include <iostream>
 //include de cabecalho
-#include "Headers/Data.h"
+#include "Data.h"
 
 using namespace std;
 
