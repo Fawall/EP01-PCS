@@ -5,7 +5,8 @@ void testeCatraca();
 
 int main() {
 
-    testeCatraca();
+    teste();
+    //testeCatraca();
     
     return 0;
 }
