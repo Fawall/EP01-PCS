@@ -14,7 +14,7 @@ protected:
     int maximo;
     string nome;
     Registro **registros;
-    int quantidade;
+    int quantidade = 0;
 
 public:
     Usuario(int id, string nome, int maximo);

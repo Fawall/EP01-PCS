@@ -5,7 +5,6 @@ Usuario::Usuario(int id, string nome, int maximo) {
     this->nome = nome;
     this->maximo = maximo;
     this->registros = new Registro*[maximo];
-    this->quantidade = 0;
 }   
 
 
