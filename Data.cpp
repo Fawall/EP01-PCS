@@ -21,9 +21,6 @@ Data::~Data(){}
 int Data::diferenca(Data* d) { 
 //retorna a diferenca em segundos entre a data atual e a data recebida
 
-    time_t t;
-    time(&t); //pegar o tempo desde 70 (atual)
-
     tm *d1 = new tm(); //criei um obj data
 
     d1->tm_hour = d->hora;
@@ -31,12 +28,16 @@ int Data::diferenca(Data* d) {
     d1->tm_sec = d->segundo;
     d1->tm_isdst = 0;
     d1->tm_mday = d->dia;
-    d1->tm_mon = d->mes;
-    d1->tm_year = d->ano;
+    d1->tm_mon = d->mes;//-1;
+    cout << "mes eh: " << d1->tm_mon << endl;
+    d1->tm_year = d->ano;//-1900;
 
     time_t t1 = mktime(d1); //peguei o obj data e fiz virar um horario (convercao)
     
-    int diferenca = (int) difftime(t,t1); //(time_t inicio, time_t fim)
+    time_t t;
+    time(&t); //pegar o tempo desde 70 (atual)
+
+    int diferenca = (int) difftime(t1,t); //(time_t inicio, time_t fim)
 
     return diferenca;
 
