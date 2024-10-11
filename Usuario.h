@@ -15,6 +15,7 @@ protected:
     string nome;
     Registro **registros;
     int quantidade = 0;
+    int diferenca = 0;
 
 public:
     Usuario(int id, string nome, int maximo);
@@ -25,6 +26,7 @@ public:
 
     bool entrar(Data *d);
     bool sair(Data *d);
+
     bool registrarEntradaManual(Data *d);
     bool registrarSaidaManual(Data *d);
 
