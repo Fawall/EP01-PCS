@@ -10,6 +10,8 @@ bool Catraca::entrar(int id, Data* d) {
 
     if( usuario != nullptr){
         usuario->entrar(d);
+        cout << "[Entrada] Catraca 0" << " abriu: id " << id << endl;
+        
         return true;
     }
     return false;
