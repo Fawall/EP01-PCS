@@ -2,6 +2,7 @@
 #define GERENCIADORDEUSUARIO_H
 
 #include "Usuario.h"
+#include "Registro.h"
 
 class GerenciadorDeUsuario
 {
@@ -20,8 +21,7 @@ public:
     Usuario* getUsuarios();
     
     int getQuantidade();
-
-
+   
 };
 
 
