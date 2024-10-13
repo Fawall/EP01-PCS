@@ -1,4 +1,5 @@
 #include "GerenciadorDeUsuario.h"
+#include "Usuario.h"
 #include "Registro.h"
 
 using namespace std;
@@ -13,7 +14,7 @@ GerenciadorDeUsuario::~GerenciadorDeUsuario(){
     for(int i = 0; i < quantidade; i++){
         delete usuarios[i];
     }
-    delete usuarios;
+    delete[] usuarios;
 }
 
 bool GerenciadorDeUsuario::adicionar(Usuario* u) {
@@ -36,8 +37,6 @@ bool GerenciadorDeUsuario::adicionar(Usuario* u) {
 }
 
 Usuario* GerenciadorDeUsuario::getUsuario(int id) {
-    
-
     for(int i = 0; i < quantidade; i++) {
         if(usuarios[i]->getId() == id) {
             return usuarios[i];
@@ -46,8 +45,8 @@ Usuario* GerenciadorDeUsuario::getUsuario(int id) {
     return nullptr;
 }
 
-Usuario* GerenciadorDeUsuario::getUsuarios() {
-    return *usuarios;
+Usuario** GerenciadorDeUsuario::getUsuarios() {
+    return usuarios;
 }
 
 int GerenciadorDeUsuario::getQuantidade() {

@@ -18,7 +18,7 @@ public:
 
     bool adicionar(Usuario* u);
     Usuario* getUsuario(int id);
-    Usuario* getUsuarios();
+    Usuario** getUsuarios();
     
     int getQuantidade();
    
