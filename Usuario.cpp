@@ -73,6 +73,7 @@ bool Usuario::entrar(Data *d)
         quantidade++;
         return true;
     }
+    registros[quantidade] = nullptr;
     return false;
 }
 
@@ -85,21 +86,21 @@ bool Usuario::sair(Data *d)
 
     if (quantidade == 0)
     {
-        registros[quantidade] = new Registro(d, false, false);
-        quantidade ++;
-        return true;
+        return false;
     }
 
     // int ultimoRegistroData = registros[quantidade]->getData()->diferenca(registros[quantidade]->getData());
-    bool ultimoRegistroSaida = registros[quantidade-1]->isEntrada();
+    bool ultimoRegistroEntrada = registros[quantidade-1]->isEntrada();
 
     int diferenca = d->diferenca(d) - d->diferenca(registros[quantidade-1]->getData());
 
-    if (ultimoRegistroSaida == false || diferenca < 0)
+    if (ultimoRegistroEntrada == true || diferenca < 0)
     {
         registros[quantidade] = new Registro(d, false, false);
+        quantidade++;
         return true;
     }
+
     return false;
 }
 
