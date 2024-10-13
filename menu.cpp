@@ -10,12 +10,14 @@ using namespace std;
 void menu()
 {
     Data *d;
-    GerenciadorDeUsuario *u = new GerenciadorDeUsuario(10);
-    Catraca *catracaEntrar = new Catraca(u);
-    Catraca *catracaSair = new Catraca(u);
+    GerenciadorDeUsuario *g = new GerenciadorDeUsuario(10);
+    Usuario* usuario;
+    Catraca *catracaEntrar = new Catraca(g);
+    Catraca *catracaSair = new Catraca(g);
 
     int id = 0;
-    int hora = 0; 
+    int catraca = 0;
+    int hora = 0;
     int minuto = 0;
     int segundo = 0;
     int dia = 0;
@@ -34,73 +36,90 @@ void menu()
         cout << "0) Sair" << endl;
 
         cout << "Escolha uma opcao: ";
-        // cin >> escolha;
-        escolha = 1;
+        cin >> escolha;
+        // escolha = 1;
 
         switch (escolha)
         {
         case 1:
-            id = 1;
-            hora = 2;
-            minuto = 0;
-            segundo = 30;
-            dia = 11;
-            mes = 9;
-            ano = 2004;
-
-            // cout << "Catraca: 0" << endl;
-            // cout << "Id: ";
-            // cin >> id;
-            // cout << "Hora: ";
-            // cin >> hora;
-            // cout << "Minuto: " ;
-            // cin >> minuto;
-            // cout << "Segundo: ";
-            // cin >> segundo;
-            // cout << "Dia: ";
-            // cin >> dia;
-            // cout << "Mes: ";
-            // cin >> mes;
-            // cout << "Ano: ";
-            // cin >> ano;
+            cout << "Catraca: ";
+            cin >> catraca;
+            cout << "Id: ";
+            cin >> id;
+            cout << "Hora: ";
+            cin >> hora;
+            cout << "Minuto: ";
+            cin >> minuto;
+            cout << "Segundo: ";
+            cin >> segundo;
+            cout << "Dia: ";
+            cin >> dia;
+            cout << "Mes: ";
+            cin >> mes;
+            cout << "Ano: ";
+            cin >> ano;
 
             d = new Data(hora, minuto, segundo, dia, mes, ano);
-
-            catracaEntrar->entrar(id, d);
+            bool verifica = catracaEntrar->entrar(id, d);
+            if (verifica != true)
+            {
+                cout << "[Entrada] Catraca " << catraca << " travada" << endl;
+            }
+            cout << "[Entrada] Catraca " << catraca <<" abriu: id " << id << endl;
+            
             cout << endl;
 
             break;
         case 2:
-            id = 1;
-            hora = 1;
-            minuto = 0;
-            segundo = 30;
-            dia = 11;
-            mes = 9;
-            ano = 2004;
-
-            // cout << "Catraca: 0" << endl;
-            // cout << "Id: ";
-            // cin >> id;
-            // cout << "Hora: ";
-            // cin >> hora;
-            // cout << "Minuto: " ;
-            // cin >> minuto;
-            // cout << "Segundo: ";
-            // cin >> segundo;
-            // cout << "Dia: ";
-            // cin >> dia;
-            // cout << "Mes: ";
-            // cin >> mes;
-            // cout << "Ano: ";
-            // cin >> ano;
+            cout << "Catraca: 1" << endl;
+            cout << "Id: ";
+            cin >> id;
+            cout << "Hora: ";
+            cin >> hora;
+            cout << "Minuto: ";
+            cin >> minuto;
+            cout << "Segundo: ";
+            cin >> segundo;
+            cout << "Dia: ";
+            cin >> dia;
+            cout << "Mes: ";
+            cin >> mes;
+            cout << "Ano: ";
+            cin >> ano;
 
             d = new Data(hora, minuto, segundo, dia, mes, ano);
 
             catracaSair->sair(id, d);
+            cout << "[Saida] Catraca 1" << " abriu: id " << id << endl;
             cout << endl;
 
             break;
+        case 3:
+            cout << "Entrada (e) ou Saida (s)? ";
+            char acao;
+            cin >> acao;
+            if (acao == 'e')
+            {
+                cout << "Id: ";
+                cin >> id;
+                cout << "Hora: ";
+                cin >> hora;
+                cout << "Minuto: ";
+                cin >> minuto;
+                cout << "Segundo: ";
+                cin >> segundo;
+                cout << "Dia: ";
+                cin >> dia;
+                cout << "Mes: ";
+                cin >> mes;
+                cout << "Ano: ";
+                cin >> ano;
+
+                d = new Data(hora, minuto, segundo, dia, mes, ano);
+                usuario->registrarEntradaManual(d);
+                
+                
+            }
 
         case 4:
             id = 1;
@@ -108,7 +127,7 @@ void menu()
 
             Usuario *user = new Usuario(id, nome, 10);
 
-            u->adicionar(user);
+            g->adicionar(user);
             cout << endl;
             break;
         }
