@@ -9,20 +9,13 @@ using namespace std;
 
 void menu()
 {
+    Usuario *usuario;
     Data *d;
     GerenciadorDeUsuario *g = new GerenciadorDeUsuario(10);
-    Usuario* usuario;
     Catraca *catracaEntrar = new Catraca(g);
     Catraca *catracaSair = new Catraca(g);
 
-    int id = 0;
-    int catraca = 0;
-    int hora = 0;
-    int minuto = 0;
-    int segundo = 0;
-    int dia = 0;
-    int mes = 0;
-    int ano = 0;
+    bool verifica;
 
     int escolha;
     do
@@ -37,11 +30,13 @@ void menu()
 
         cout << "Escolha uma opcao: ";
         cin >> escolha;
-        // escolha = 1;
+        // escolha = 3;
 
         switch (escolha)
         {
         case 1:
+        {
+            int catraca,id,hora,minuto,segundo,dia,mes,ano = 0;
             cout << "Catraca: ";
             cin >> catraca;
             cout << "Id: ";
@@ -60,17 +55,21 @@ void menu()
             cin >> ano;
 
             d = new Data(hora, minuto, segundo, dia, mes, ano);
-            bool verifica = catracaEntrar->entrar(id, d);
+            verifica = catracaEntrar->entrar(id, d);
             if (verifica != true)
             {
                 cout << "[Entrada] Catraca " << catraca << " travada" << endl;
+                break;
             }
-            cout << "[Entrada] Catraca " << catraca <<" abriu: id " << id << endl;
-            
+            cout << "[Entrada] Catraca " << catraca << " abriu: id " << id << endl;
+
             cout << endl;
 
             break;
+        }
         case 2:
+        {
+            int id,hora,minuto,segundo,dia,mes,ano = 0;
             cout << "Catraca: 1" << endl;
             cout << "Id: ";
             cin >> id;
@@ -94,12 +93,19 @@ void menu()
             cout << endl;
 
             break;
+        }
         case 3:
+        {
             cout << "Entrada (e) ou Saida (s)? ";
-            char acao;
-            cin >> acao;
-            if (acao == 'e')
+            char opcao;
+            cin >> opcao;
+            opcao = tolower(opcao);
+            switch (opcao)
             {
+            case 'e':
+            {
+                int id,hora,minuto,segundo,dia,mes,ano = 0;
+
                 cout << "Id: ";
                 cin >> id;
                 cout << "Hora: ";
@@ -116,20 +122,77 @@ void menu()
                 cin >> ano;
 
                 d = new Data(hora, minuto, segundo, dia, mes, ano);
-                usuario->registrarEntradaManual(d);
-                
-                
+
+                bool ver = usuario->registrarEntradaManual(d);
+
+                if (ver != true)
+                {
+                    cout << "Erro ao registrar entrada manual" << endl
+                         << endl;
+                    break;
+                }
+                else
+                {
+                    cout << "Entrada manual registrada: id " << id << endl
+                         << endl;
+                    break;
+                }
+            }
+            case 's':
+            {
+                int id = 0;
+                int hora = 0;
+                int minuto = 0;
+                int segundo = 0;
+                int dia = 0;
+                int mes = 0;
+                int ano = 0;
+                cout << "Id: ";
+                cin >> id;
+                cout << "Hora: ";
+                cin >> hora;
+                cout << "Minuto: ";
+                cin >> minuto;
+                cout << "Segundo: ";
+                cin >> segundo;
+                cout << "Dia: ";
+                cin >> dia;
+                cout << "Mes: ";
+                cin >> mes;
+                cout << "Ano: ";
+                cin >> ano;
+
+                d = new Data(hora, minuto, segundo, dia, mes, ano);
+
+                bool ver = usuario->registrarSaidaManual(d);
+
+                if (ver != true)
+                {
+                    cout << "Erro ao registrar saida manual" << endl
+                         << endl;
+                    break;
+                }
+                else
+                {
+                    cout << "Saida manual registrada: id " << id << endl
+                         << endl;
+                }
             }
 
+            break;
+        }
+        }
         case 4:
-            id = 1;
+        {
+            int id = 1;
             string nome = "Maria";
 
-            Usuario *user = new Usuario(id, nome, 10);
+            usuario = new Usuario(id, nome, 10);
 
-            g->adicionar(user);
+            g->adicionar(usuario);
             cout << endl;
             break;
+        };
         }
 
     } while (escolha != 0);
