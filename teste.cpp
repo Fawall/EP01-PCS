@@ -124,4 +124,14 @@ void testeCatraca(){
 
 }
 
+void Data2(){
+
+    Data* d = new Data(1,1,1,1,1,2024);
+    Data* d2 = new Data(2,1,1,1,1,2024);
+
+    d->diferenca(d);
+
+
+}
+
 
