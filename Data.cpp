@@ -8,10 +8,10 @@ using namespace std;
 Data::Data(int hora, int minuto, int segundo, int dia, int mes, int ano) {
 
 this->hora = hora;
-this->minuto = hora;
-this->segundo = hora;
-this->dia = hora;
-this->mes = hora;
+this->minuto = minuto;
+this->segundo = segundo;
+this->dia = dia;
+this->mes = mes;
 this->ano = ano;
 
 }
