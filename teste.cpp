@@ -84,8 +84,6 @@ void testeGerenciador(){
 
     cout << "Usuario: " << g->getUsuario(1)->getNome() << endl;
 
-
-
     cout << "Quantidade: " << g->getQuantidade() << endl;
 }
 
