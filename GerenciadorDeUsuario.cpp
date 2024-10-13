@@ -29,10 +29,15 @@ bool GerenciadorDeUsuario::adicionar(Usuario* u) {
 
     usuarios[quantidade] = u;
     quantidade++;
+
+    cout << "Usuario cadastrado com sucesso" << endl;
+
     return true;
 }
 
 Usuario* GerenciadorDeUsuario::getUsuario(int id) {
+    
+
     for(int i = 0; i < quantidade; i++) {
         if(usuarios[i]->getId() == id) {
             return usuarios[i];
