@@ -1,5 +1,6 @@
 #include "Catraca.h"
-
+#include "Usuario.h"
+#include "Data.h"
 
 Catraca::Catraca(GerenciadorDeUsuario* g) {
     this->g = g;
@@ -9,9 +10,7 @@ bool Catraca::entrar(int id, Data* d) {
     Usuario* usuario = g->getUsuario(id);
 
     if( usuario != nullptr){
-        usuario->entrar(d);
-        cout << "[Entrada] Catraca 0" << " abriu: id " << id << endl;
-        
+        usuario->entrar(d);  
         return true;
     }
     return false;
@@ -19,16 +18,17 @@ bool Catraca::entrar(int id, Data* d) {
 }
 
 bool Catraca::sair(int id, Data* d) {
+   
     Usuario* usuario = g->getUsuario(id);
-
-    if( usuario != false){
-        usuario->sair(d);
-
-        cout << "[Saida] Catraca 1" << " abriu: id " << id << endl;
+    bool verifica = usuario->sair(d);
+    
+    if(usuario != nullptr && verifica == true){
         return true;
     }
-    cout << "NAO SAIU";
-    return false;
+    else{
+        return false;
+   
+    }
 }
 
 Catraca::~Catraca() { }
