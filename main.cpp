@@ -3,9 +3,11 @@ void testeRegistro();
 void testeGerenciador();
 void testeCatraca();
 
+void menu();
+
 int main() {
 
-    testeGerenciador();
+    menu();
     
     return 0;
 }
