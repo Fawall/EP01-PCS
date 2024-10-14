@@ -158,7 +158,7 @@ void testeEntradasESaidas(){
 
 }
 
-void testeFluxoDePrograma(){
+void testeEntradaESaidaCatraca(){
 
     cout << "Cadastro de usuarios" << endl;
     GerenciadorDeUsuario* g = new GerenciadorDeUsuario(10);
@@ -170,25 +170,55 @@ void testeFluxoDePrograma(){
     g->adicionar(u2);
     g->adicionar(u3);
 
-    cout << "Entrada de usuarios" << endl;
+    // cout << "Entrada de usuarios" << endl;
     Catraca* c = new Catraca(g);
     cout << "Usuario 1: " << c->entrar(1,new Data(2,1,1,2,1,2024))<<endl;
-    cout << "Usuario 2: " << c->entrar(2,new Data(2,1,1,3,1,2024))<<endl;
+    cout << "Usuario 2: " << c->entrar(2,new Data(3,1,1,3,1,2024))<<endl;
     cout << "Usuario 3: " << c->entrar(3,new Data(2,1,1,4,1,2024)) << endl << endl;
 
     cout << "Saida de usuarios" << endl;
     cout << "Usuario 1: " << c->sair(1,new Data(4,1,1,2,1,2024))<<endl;
     cout << "Usuario 2: " << c->sair(2,new Data(5,1,1,3,1,2024))<<endl;
-    cout << "Usuario 3: " << c->sair(3,new Data(6,1,1,4,1,2024))<<endl;
+    cout << "Usuario 3: " << c->sair(3,new Data(6,1,1,4,1,2024))<<endl<<endl;
 
-    cout << "Saidas repetidas" << endl;
+    cout << "Testando saidas repetidas" << endl;
     cout << "Usuario 1: " << c->sair(1,new Data(4,1,1,2,1,2024))<<endl;
     cout << "Usuario 2: " << c->sair(2,new Data(5,1,1,3,1,2024))<<endl;
-    cout << "Usuario 3: " << c->sair(3,new Data(6,1,1,4,1,2024))<<endl;
+    cout << "Usuario 3: " << c->sair(3,new Data(6,1,1,4,1,2024))<<endl<<endl;
+
+    cout << "Testando se quando um usuario sai, ele consegue entrar novamente" << endl;
+    cout << "Usuario 1 entrada: " << c->entrar(1,new Data(5,1,1,2,1,2024)) << endl;
+    cout << "Usuario 2 saida: " << c->sair(1,new Data(6,1,1,2,1,2024)) << endl;
+    cout << "Usuario 1 entrada apos a primeira saida: " << c->entrar(1,new Data(7,1,1,2,1,2024)) << endl;
+    cout << "Usuario 1 saida apos a segunda entrada: " << c->sair(1, new Data(8,1,1,2,1,2024)) << endl;
     
-
-
-
 }
 
+void testeGetHorasTrabalhadas(){
+    GerenciadorDeUsuario* g = new GerenciadorDeUsuario(10);
+    Catraca* c = new Catraca(g);
+    Usuario* u2 = new Usuario(2,"Maria",10);
+    g->adicionar(u2);
+
+    c->entrar(2,new Data(9,4,30,30,9,2024));
+    c->sair(2, new Data(15,0,20,30,9,2024));
+    
+    c->entrar(2,new Data(23,0,0,30,9,2024));
+    c->sair(2, new Data(8,6,0,1,10,2024));
+
+    c->entrar(2,new Data(9,5,30,2,10,2024));
+    c->sair(2, new Data(12,8,0,2,10,2024));
+
+    c->entrar(2,new Data(13,10,0,2,10,2024));
+    c->sair(2, new Data(18,10,30,2,10,2024));
+
+    c->entrar(2,new Data(9,10,30,3,10,2024));
+
+    cout << "Horas trabalhadas setembro: " << u2->getHorasTrabalhadas(9,2024) << endl;
+    cout << "Horas Trabalhadas outubro: " << u2->getHorasTrabalhadas(10,2024);
+
+    u2->~Usuario();
+    g->~GerenciadorDeUsuario();
+
+}
 
