@@ -5,7 +5,6 @@ void testeGerenciador();
 void testeCatraca();
 void testeEntradasESaidas();
 void testeEntradaESaidaCatraca();
-void testeFluxoDePrograma();
 void testeGetHorasTrabalhadas();
 
 void menu();
