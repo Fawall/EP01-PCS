@@ -20,7 +20,6 @@ int Usuario::getId()
     return this->id;
 }
 
-
 bool Usuario::entrar(Data *d)
 {
     int atualQnt = getQuantidade();
@@ -37,7 +36,7 @@ bool Usuario::entrar(Data *d)
     }
 
     bool ultimoRegistroEntrada = registros[atualQnt - 1]->isEntrada();
-    int diferenca = d->diferenca(d) - d->diferenca(registros[quantidade -1]->getData());
+    int diferenca = d->diferenca(d) - d->diferenca(registros[quantidade - 1]->getData());
 
     if (ultimoRegistroEntrada == false && diferenca < 0)
     {
@@ -56,11 +55,11 @@ bool Usuario::sair(Data *d)
     {
         return false;
     }
-    
+
     // int ultimoRegistroData = registros[quantidade]->getData()->diferenca(registros[quantidade]->getData());
-    bool ultimoRegistroEntrada = registros[atualQnt-1]->isEntrada();
-    
-    int ultimaData = d->diferenca(registros[atualQnt-1]->getData());
+    bool ultimoRegistroEntrada = registros[atualQnt - 1]->isEntrada();
+
+    int ultimaData = d->diferenca(registros[atualQnt - 1]->getData());
     int atualData = d->diferenca(d);
 
     int diferencaEntreDuasDatas = ultimaData - atualData;
@@ -91,13 +90,10 @@ bool Usuario::registrarEntradaManual(Data *d)
         return true;
     }
 
-
     bool ultimoRegistroEntrada = registros[atualQnt - 1]->isEntrada();
-    Data* ultimoRegistroData = registros[atualQnt - 1]->getData();
+    Data *ultimoRegistroData = registros[atualQnt - 1]->getData();
 
-
-    int diferenca = d->diferenca(d) - d->diferenca(registros[quantidade -1]->getData());
-
+    int diferenca = d->diferenca(d) - d->diferenca(registros[quantidade - 1]->getData());
 
     if (ultimoRegistroEntrada == false && diferenca < 0)
     {
@@ -107,7 +103,6 @@ bool Usuario::registrarEntradaManual(Data *d)
     }
     registros[atualQnt] = nullptr;
     return false;
-
 }
 
 bool Usuario::registrarSaidaManual(Data *d)
@@ -118,11 +113,11 @@ bool Usuario::registrarSaidaManual(Data *d)
     {
         return false;
     }
-    
-    // int ultimoRegistroData = registros[quantidade]->getData()->diferenca(registros[quantidade]->getData());
-    bool ultimoRegistroEntrada = registros[atualQnt-1]->isEntrada();
 
-    int diferenca = d->diferenca(d) - d->diferenca(registros[atualQnt-1]->getData());
+    // int ultimoRegistroData = registros[quantidade]->getData()->diferenca(registros[quantidade]->getData());
+    bool ultimoRegistroEntrada = registros[atualQnt - 1]->isEntrada();
+
+    int diferenca = d->diferenca(d) - d->diferenca(registros[atualQnt - 1]->getData());
 
     if (ultimoRegistroEntrada == true && diferenca < 0)
     {
@@ -146,17 +141,51 @@ int Usuario::getQuantidade()
 
 int Usuario::getHorasTrabalhadas(int mes, int ano)
 {
-    // To be implemented later
-    return 0;
+    int atualQnt = getQuantidade();
+    int horasTrabalhadas = 0;
+    Data *dataSaida;
+    
+    if (atualQnt == 0)
+    {
+        return 0;
+    }
+
+
+    for (int i = 0; i < atualQnt; i++)
+    {
+        if (registros[i]->getData()->getMes() == mes && registros[i]->getData()->getAno() == ano)
+        {
+            if (registros[i]->isEntrada() == true)
+            {
+                if (i + 1 < atualQnt && registros[i + 1] != nullptr)
+                {
+                    if (registros[i+1]->isEntrada() == false)
+                    {
+                        dataSaida = registros[i + 1]->getData();
+                        int diferencaEntreSaidaEntrada = dataSaida->diferenca(registros[i]->getData());
+                       
+                        horasTrabalhadas += (diferencaEntreSaidaEntrada) / 3600;
+                    }
+                }
+            }
+        }
+    }
+
+    return horasTrabalhadas;
 }
 
 Usuario::~Usuario()
 {
     int atualQnt = getQuantidade();
-
-    for (int i = 0; i <= atualQnt; i++)
+    if (registros != nullptr)
     {
-        delete registros[i];
+        for (int i = 0; i < atualQnt; i++)
+        {
+            delete registros[i];
+            registros[i] = nullptr;
+        }
+        delete[] registros;
+        registros = nullptr;
     }
-    delete registros;
+
 }
