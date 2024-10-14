@@ -58,10 +58,10 @@ void menu()
             verifica = catracaEntrar->entrar(id, d);
             if (verifica != true)
             {
-                cout << "[Entrada] Catraca " << catraca << " travada" << endl;
+                cout << "[Entrada] Catraca " << catraca << " travada" << endl << endl;
                 break;
             }
-            cout << "[Entrada] Catraca " << catraca << " abriu: id " << id << endl;
+            cout << "[Entrada] Catraca " << catraca << " abriu: id " << id << endl << endl;
 
             cout << endl;
 
@@ -69,8 +69,9 @@ void menu()
         }
         case 2:
         {
-            int id,hora,minuto,segundo,dia,mes,ano = 0;
-            cout << "Catraca: 1" << endl;
+            int catraca,id,hora,minuto,segundo,dia,mes,ano = 0;
+            cout << "Catraca: ";
+            cin >> catraca;
             cout << "Id: ";
             cin >> id;
             cout << "Hora: ";
@@ -88,10 +89,14 @@ void menu()
 
             d = new Data(hora, minuto, segundo, dia, mes, ano);
 
-            catracaSair->sair(id, d);
-            cout << "[Saida] Catraca 1" << " abriu: id " << id << endl;
-            cout << endl;
+            verifica = catracaSair->sair(id, d);
 
+            if(verifica != true){
+                cout << "[Saida] Catraca "<< catraca <<" travada" << endl << endl;
+                break;
+            }
+            
+            cout << "[Saida] Catraca " << catraca <<" abriu: id " << id << endl << endl;
             break;
         }
         case 3:
@@ -178,13 +183,21 @@ void menu()
         }
         case 4:
         {
-            int id = 1;
-            string nome = "Maria";
-
+            int id = 0;
+            cout << "Id: ";
+            cin >> id;
+            
+            string nome;
+            cout << "Nome: ";
+            cin >> nome;
             usuario = new Usuario(id, nome, 10);
-
-            g->adicionar(usuario);
-            cout << endl;
+             
+            bool verificaUsuario = g->adicionar(usuario);
+            if(verificaUsuario != true){
+                cout << "Erro ao cadastrar" << endl;
+                break;
+            }
+            cout << "Usuario cadastrado com sucesso" << endl << endl; 
             break;
         };
         }
