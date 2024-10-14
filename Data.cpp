@@ -47,8 +47,7 @@ Data::~Data(){}
 
 int Data::diferenca(Data* d) {
     tm d1 = {};
-    d1.tm_hour = this->hora = 2;
-
+    d1.tm_hour = this->hora;
     d1.tm_min = this->minuto;
     d1.tm_sec = this->segundo;
     d1.tm_isdst = 0;
@@ -57,9 +56,7 @@ int Data::diferenca(Data* d) {
     d1.tm_year = this->ano - 1900;
 
     tm d2 = {};
-
-    d2.tm_hour = d->hora =0;
-
+    d2.tm_hour = d->hora;
     d2.tm_min = d->minuto;
     d2.tm_sec = d->segundo;
     d2.tm_isdst = 0;
@@ -70,18 +67,9 @@ int Data::diferenca(Data* d) {
     time_t t1 = mktime(&d1);
     time_t t2 = mktime(&d2);
 
-
     return difftime(t1, t2);
 }
 
-/*
-    Data::diferenca({hora, minuto,segundo})
-    
-
-
-
-
-*/
 
 
 int Data::getHora() {
