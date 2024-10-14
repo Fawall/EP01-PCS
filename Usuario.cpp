@@ -23,28 +23,29 @@ int Usuario::getId()
 
 bool Usuario::entrar(Data *d)
 {
-    if (quantidade >= maximo)
+    int atualQnt = getQuantidade();
+    if (atualQnt >= maximo)
     {
         return false;
     }
 
     if (quantidade == 0)
     {
-        registros[quantidade] = new Registro(d, true, false);
+        registros[atualQnt] = new Registro(d, true, false);
         quantidade++;
         return true;
     }
 
-    bool ultimoRegistroEntrada = registros[quantidade - 1]->isEntrada();
+    bool ultimoRegistroEntrada = registros[atualQnt - 1]->isEntrada();
     int diferenca = d->diferenca(d) - d->diferenca(registros[quantidade -1]->getData());
 
-    if (ultimoRegistroEntrada == false || diferenca < 0)
+    if (ultimoRegistroEntrada == false && diferenca < 0)
     {
         registros[quantidade] = new Registro(d, true, false);
         quantidade++;
         return true;
     }
-    registros[quantidade] = nullptr;
+    // registros[quantidade] = nullptr;
     return false;
 }
 
@@ -58,10 +59,13 @@ bool Usuario::sair(Data *d)
     
     // int ultimoRegistroData = registros[quantidade]->getData()->diferenca(registros[quantidade]->getData());
     bool ultimoRegistroEntrada = registros[atualQnt-1]->isEntrada();
+    
+    int ultimaData = d->diferenca(registros[atualQnt-1]->getData());
+    int atualData = d->diferenca(d);
 
-    int diferenca = d->diferenca(d) - d->diferenca(registros[atualQnt-1]->getData());
+    int diferencaEntreDuasDatas = ultimaData - atualData;
 
-    if (ultimoRegistroEntrada == true && diferenca < 0)
+    if (ultimoRegistroEntrada == true && diferencaEntreDuasDatas > 0)
     {
         registros[atualQnt] = new Registro(d, false, false);
         quantidade++;
@@ -91,9 +95,11 @@ bool Usuario::registrarEntradaManual(Data *d)
     bool ultimoRegistroEntrada = registros[atualQnt - 1]->isEntrada();
     Data* ultimoRegistroData = registros[atualQnt - 1]->getData();
 
-    int diferenca = d->diferenca(d) - d->diferenca(ultimoRegistroData);
 
-    if (ultimoRegistroEntrada == false || diferenca < 0)
+    int diferenca = d->diferenca(d) - d->diferenca(registros[quantidade -1]->getData());
+
+
+    if (ultimoRegistroEntrada == false && diferenca < 0)
     {
         registros[atualQnt] = new Registro(d, true, true);
         quantidade++;
