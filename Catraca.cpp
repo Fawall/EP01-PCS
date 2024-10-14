@@ -21,7 +21,7 @@ bool Catraca::sair(int id, Data* d) {
    
     Usuario* usuario = g->getUsuario(id);
     bool verifica = usuario->sair(d);
-    
+
     if(usuario != nullptr && verifica == true){
         return true;
     }
