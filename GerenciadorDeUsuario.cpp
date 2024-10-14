@@ -31,8 +31,6 @@ bool GerenciadorDeUsuario::adicionar(Usuario* u) {
     usuarios[quantidade] = u;
     quantidade++;
 
-    cout << "Usuario cadastrado com sucesso" << endl;
-
     return true;
 }
 

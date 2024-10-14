@@ -8,8 +8,9 @@ Catraca::Catraca(GerenciadorDeUsuario* g) {
 
 bool Catraca::entrar(int id, Data* d) {
     Usuario* usuario = g->getUsuario(id);
+    bool verificaUsuario = usuario->entrar(d);
 
-    if( usuario != nullptr){
+    if( usuario != nullptr && verificaUsuario != false){
         usuario->entrar(d);  
         return true;
     }
@@ -21,7 +22,7 @@ bool Catraca::sair(int id, Data* d) {
    
     Usuario* usuario = g->getUsuario(id);
     bool verifica = usuario->sair(d);
-    
+
     if(usuario != nullptr && verifica == true){
         return true;
     }

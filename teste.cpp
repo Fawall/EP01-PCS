@@ -84,8 +84,6 @@ void testeGerenciador(){
 
     cout << "Usuario: " << g->getUsuario(1)->getNome() << endl;
 
-
-
     cout << "Quantidade: " << g->getQuantidade() << endl;
 }
 
@@ -112,26 +110,120 @@ void testeCatraca(){
         cout << "Erro ao sair" << endl;
     }
 
+}
+
+void testeEntradasESaidas(){
+    Usuario* usuario1;
+    Usuario* usuario2;
+    Usuario* usuario3;
+
+    GerenciadorDeUsuario* g = new GerenciadorDeUsuario(10);
     
-    verifica = c->sair(2,new Data(1,1,1,1,1,2024));    
-    if(verifica != true){
-        cout << "Erro ao sair" << endl;
-    }
-    else{
-        cout << "Saiu" << endl;
-    }
-    // bool teste2 = c->entrar(1,new Data(1,1,1,1,1,2024));
+
+    usuario1 = new Usuario(1,"Joao",10);
+    usuario2 = new Usuario(2,"Maria",10);
+    usuario3 = new Usuario(3,"Jose",10);
+
+    g->adicionar(usuario1);
+    g->adicionar(usuario2);
+    g->adicionar(usuario3);
+
+    cout << "Quantidade de usuarios: " <<  g->getQuantidade() << endl;
+
+    cout << "Entrada usuario 1: " << usuario1->entrar(new Data(5,12,27,5,1,2024)) << endl;
+    cout << "Entrada usuario 2: " << usuario2->entrar(new Data(7,12,27,5,1,2024)) << endl;
+    cout << "Entrada usuario 3: " << usuario3->entrar(new Data(8,12,27,5,1,2024)) << endl;
+
+    cout << "Saida usuario 1: " << usuario1->sair(new Data(10,12,27,5,1,2024)) << endl;
+    cout << "Saida usuario 2: " << usuario2->sair(new Data(11,12,27,5,1,2024)) << endl;
+    cout << "Saida usuario 3: " << usuario3->sair(new Data(12,12,27,5,1,2024)) << endl << endl;
+
+
+    cout << "TESTANDO ENTRADAS INVALIDAS" << endl;
+    Usuario* usuario5  = new Usuario(5,"Fabio",10);
+    g->adicionar(usuario5);
+
+    cout << "Entrada usuario 5: " << usuario5->entrar(new Data(5,12,27,5,1,2024)) << endl;
+    cout << "Repetindo entrada do usuario 5: " << usuario5->entrar(new Data(5,12,27,5,1,2024)) << endl;
+    cout << "Entrada sem saida do usuario 5: " << usuario5->entrar(new Data(6,12,27,5,1,2024)) << endl;
+    cout << "Entrada antes da primeira entrada do usuario 5: " << usuario5->entrar(new Data(3,12,27,5,1,2024)) << endl << endl;
+
+
+    cout << "TESTANDO SAIDA INVALIDAS" << endl;
+    Usuario* usuario4;
+    
+    usuario4 = new Usuario(4,"Fabio",10);
+
+    cout << "Entrada usuario 4: " << usuario4->entrar(new Data(5,12,27,5,1,2024)) << endl;
+    cout << "Saida antes da entrada: " << usuario4->sair(new Data(4,12,27,5,1,2024)) << endl;
+    usuario4->sair(new Data(6,12,27,5,1,2024));
+
+    cout << "Saida sem entrada: " << usuario4->sair(new Data(6,12,27,5,1,2024)) << endl;
+
 
 }
 
-void Data2(){
+void testeEntradaESaidaCatraca(){
 
-    Data* d = new Data(1,1,1,1,1,2024);
-    Data* d2 = new Data(2,1,1,1,1,2024);
+    cout << "Cadastro de usuarios" << endl;
+    GerenciadorDeUsuario* g = new GerenciadorDeUsuario(10);
+    Usuario* u1 = new Usuario(1,"Joao",10);
+    Usuario* u2 = new Usuario(2,"Maria",10);
+    Usuario* u3 = new Usuario(3,"Jose",10);
 
-    d->diferenca(d);
+    g->adicionar(u1);
+    g->adicionar(u2);
+    g->adicionar(u3);
 
+    // cout << "Entrada de usuarios" << endl;
+    Catraca* c = new Catraca(g);
+    cout << "Usuario 1: " << c->entrar(1,new Data(2,1,1,2,1,2024))<<endl;
+    cout << "Usuario 2: " << c->entrar(2,new Data(3,1,1,3,1,2024))<<endl;
+    cout << "Usuario 3: " << c->entrar(3,new Data(2,1,1,4,1,2024)) << endl << endl;
 
+    cout << "Saida de usuarios" << endl;
+    cout << "Usuario 1: " << c->sair(1,new Data(4,1,1,2,1,2024))<<endl;
+    cout << "Usuario 2: " << c->sair(2,new Data(5,1,1,3,1,2024))<<endl;
+    cout << "Usuario 3: " << c->sair(3,new Data(6,1,1,4,1,2024))<<endl<<endl;
+
+    cout << "Testando saidas repetidas" << endl;
+    cout << "Usuario 1: " << c->sair(1,new Data(4,1,1,2,1,2024))<<endl;
+    cout << "Usuario 2: " << c->sair(2,new Data(5,1,1,3,1,2024))<<endl;
+    cout << "Usuario 3: " << c->sair(3,new Data(6,1,1,4,1,2024))<<endl<<endl;
+
+    cout << "Testando se quando um usuario sai, ele consegue entrar novamente" << endl;
+    cout << "Usuario 1 entrada: " << c->entrar(1,new Data(5,1,1,2,1,2024)) << endl;
+    cout << "Usuario 2 saida: " << c->sair(1,new Data(6,1,1,2,1,2024)) << endl;
+    cout << "Usuario 1 entrada apos a primeira saida: " << c->entrar(1,new Data(7,1,1,2,1,2024)) << endl;
+    cout << "Usuario 1 saida apos a segunda entrada: " << c->sair(1, new Data(8,1,1,2,1,2024)) << endl;
+    
 }
 
+void testeGetHorasTrabalhadas(){
+    GerenciadorDeUsuario* g = new GerenciadorDeUsuario(10);
+    Catraca* c = new Catraca(g);
+    Usuario* u2 = new Usuario(2,"Maria",10);
+    g->adicionar(u2);
+
+    c->entrar(2,new Data(9,4,30,30,9,2024));
+    c->sair(2, new Data(15,0,20,30,9,2024));
+    
+    c->entrar(2,new Data(23,0,0,30,9,2024));
+    c->sair(2, new Data(8,6,0,1,10,2024));
+
+    c->entrar(2,new Data(9,5,30,2,10,2024));
+    c->sair(2, new Data(12,8,0,2,10,2024));
+
+    c->entrar(2,new Data(13,10,0,2,10,2024));
+    c->sair(2, new Data(18,10,30,2,10,2024));
+
+    c->entrar(2,new Data(9,10,30,3,10,2024));
+
+    cout << "Horas trabalhadas setembro: " << u2->getHorasTrabalhadas(9,2024) << endl;
+    cout << "Horas Trabalhadas outubro: " << u2->getHorasTrabalhadas(10,2024);
+
+    u2->~Usuario();
+    g->~GerenciadorDeUsuario();
+
+}
 
