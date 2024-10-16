@@ -199,7 +199,28 @@ void menu()
             }
             cout << "Usuario cadastrado com sucesso" << endl << endl; 
             break;
+        }
+        case 5: {
+            int mes, ano = 0; 
+
+            cout << "mes: ";
+            cin >> mes;
+
+            cout << "ano: ";
+            cin >> ano;
+
+            for (int i = 0; i < g->getQuantidade(); i++) {
+                cout << "Relatorio de horas trabalhadas" << endl;
+                cout << g->getUsuarios()[i]->getNome() << ": " <<g->getUsuarios()[i]->getHorasTrabalhadas(mes,ano) << endl;
+            }
+        
+            break;
+        }
+        
+        case 0: {
+            escolha = 0;
         };
+        
         }
 
     } while (escolha != 0);

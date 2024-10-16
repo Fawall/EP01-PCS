@@ -9,7 +9,7 @@ using namespace std;
 
 class Usuario
 {
-protected:
+private:
     int id;
     int maximo;
     string nome;
