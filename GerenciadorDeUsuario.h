@@ -7,10 +7,10 @@
 class GerenciadorDeUsuario
 {
 
-protected:
-    int maximo;
+private:
+    int maximo = 0;
     Usuario **usuarios;
-    int quantidade;
+    int quantidade = 0;
 
 public:
     GerenciadorDeUsuario(int maximo);
