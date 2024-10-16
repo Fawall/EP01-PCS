@@ -5,7 +5,7 @@
 
 class Registro {
 
-protected:
+private:
     Data* data;
     bool entrada;
     bool manual;
