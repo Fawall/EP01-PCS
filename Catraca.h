@@ -6,7 +6,7 @@
 class Catraca
 {
 
-protected:
+private:
     GerenciadorDeUsuario* g;
 
 public:
