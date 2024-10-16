@@ -36,7 +36,7 @@ void menu()
         {
         case 1:
         {
-            int catraca, id, hora, minuto, segundo, dia, mes, ano = 0;
+            int catraca,id,hora,minuto,segundo,dia,mes,ano = 0;
             cout << "Catraca: ";
             cin >> catraca;
             cout << "Id: ";
@@ -56,26 +56,20 @@ void menu()
 
             d = new Data(hora, minuto, segundo, dia, mes, ano);
             verifica = catracaEntrar->entrar(id, d);
-
             if (verifica != true)
             {
-                cout << "[Entrada] Catraca " << catraca << " travada" << endl
-                     << endl;
+                cout << "[Entrada] Catraca " << catraca << " travada" << endl << endl;
                 break;
             }
-            else
-            {
-                cout << "[Entrada] Catraca " << catraca << " abriu: id " << id << endl
-                     << endl;
+            cout << "[Entrada] Catraca " << catraca << " abriu: id " << id << endl << endl;
 
-                cout << endl;
-            }
+            cout << endl;
 
             break;
         }
         case 2:
         {
-            int catraca, id, hora, minuto, segundo, dia, mes, ano = 0;
+            int catraca,id,hora,minuto,segundo,dia,mes,ano = 0;
             cout << "Catraca: ";
             cin >> catraca;
             cout << "Id: ";
@@ -97,18 +91,12 @@ void menu()
 
             verifica = catracaSair->sair(id, d);
 
-            if (verifica != true)
-            {
-                cout << "[Saida] Catraca " << catraca << " travada" << endl
-                     << endl;
+            if(verifica != true){
+                cout << "[Saida] Catraca "<< catraca <<" travada" << endl << endl;
                 break;
             }
-            else
-            {
-                cout << "[Saida] Catraca " << catraca << " abriu: id " << id << endl
-                     << endl;
-            }
-
+            
+            cout << "[Saida] Catraca " << catraca <<" abriu: id " << id << endl << endl;
             break;
         }
         case 3:
@@ -116,10 +104,12 @@ void menu()
             cout << "Entrada (e) ou Saida (s)? ";
             char opcao;
             cin >> opcao;
-
-            if (opcao == 'e')
+            opcao = tolower(opcao);
+            switch (opcao)
             {
-                int id, hora, minuto, segundo, dia, mes, ano = 0;
+            case 'e':
+            {
+                int id,hora,minuto,segundo,dia,mes,ano = 0;
 
                 cout << "Id: ";
                 cin >> id;
@@ -150,11 +140,12 @@ void menu()
                 {
                     cout << "Entrada manual registrada: id " << id << endl
                          << endl;
+                    break;
                 }
             }
-            else if (opcao == 's')
+            case 's':
             {
-                int id, hora, minuto, segundo, dia, mes, ano = 0;
+                int id,hora,minuto,segundo,dia,mes,ano = 0;
                 cout << "Id: ";
                 cin >> id;
                 cout << "Hora: ";
@@ -186,31 +177,51 @@ void menu()
                          << endl;
                 }
             }
+
             break;
-        };
+        }
+        }
         case 4:
         {
             int id = 0;
             cout << "Id: ";
             cin >> id;
-
+            
             string nome;
             cout << "Nome: ";
             cin >> nome;
             usuario = new Usuario(id, nome, 10);
-
+             
             bool verificaUsuario = g->adicionar(usuario);
-            if (verificaUsuario != true)
-            {
+            if(verificaUsuario != true){
                 cout << "Erro ao cadastrar" << endl;
                 break;
             }
-            else{
-                cout << "Usuario cadastrado com sucesso" << endl << endl;
+            cout << "Usuario cadastrado com sucesso" << endl << endl; 
             break;
-            }
-
-        };
         }
+        case 5: {
+            int mes, ano = 0; 
+
+            cout << "mes: ";
+            cin >> mes;
+
+            cout << "ano: ";
+            cin >> ano;
+
+            for (int i = 0; i < g->getQuantidade(); i++) {
+                cout << "Relatorio de horas trabalhadas" << endl;
+                cout << g->getUsuarios()[i]->getNome() << ": " <<g->getUsuarios()[i]->getHorasTrabalhadas(mes,ano) << endl;
+            }
+        
+            break;
+        }
+        
+        case 0: {
+            escolha = 0;
+        };
+        
+        }
+
     } while (escolha != 0);
 }
