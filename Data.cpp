@@ -20,26 +20,20 @@ Data::~Data(){}
 
 
 int Data::diferenca(Data* d) {
+
+    time_t t1;
+    time(&t1);
+    
     tm d1 = {};
-    d1.tm_hour = this->hora;
-    d1.tm_min = this->minuto;
-    d1.tm_sec = this->segundo;
-    d1.tm_isdst = 0;
-    d1.tm_mday = this->dia;
-    d1.tm_mon = this->mes - 1;
-    d1.tm_year = this->ano - 1900;
+ 
+    d1.tm_sec = d->segundo;
+    d1.tm_min = d->minuto;
+    d1.tm_hour = d->hora;
+    d1.tm_mday = d->dia;
+    d1.tm_mon = d->mes;
+    d1.tm_year = d->ano;
 
-    tm d2 = {};
-    d2.tm_hour = d->hora;
-    d2.tm_min = d->minuto;
-    d2.tm_sec = d->segundo;
-    d2.tm_isdst = 0;
-    d2.tm_mday = d->dia;
-    d2.tm_mon = d->mes - 1;
-    d2.tm_year = d->ano - 1900;
-
-    time_t t1 = mktime(&d1);
-    time_t t2 = mktime(&d2);
+    time_t t2 = mktime(&d1);
 
     return difftime(t1, t2);
 }
