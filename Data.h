@@ -1,5 +1,6 @@
 #ifndef DATA_H
 #define DATA_H
+#include <ctime>
 
 class Data {
 
@@ -11,6 +12,7 @@ private:
     int dia=0;
     int mes=0;
     int ano=0;
+    tm *dataTM = new tm;
 
 public:
 

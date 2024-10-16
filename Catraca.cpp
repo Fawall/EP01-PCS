@@ -7,13 +7,9 @@ Catraca::Catraca(GerenciadorDeUsuario* g) {
 }
 
 bool Catraca::entrar(int id, Data* d) {
-    // int id = g->getUsuario(id)->getId();
-    // string nome = g->getUsuario(id)->getNome();
 
-    // Usuario* usuario = new Usuario(id, nome, 10);
-
-    // bool verificaUsuario = usuario->entrar(d);
-
+    if(g->getQuantidade() == 0)
+        return false;
 
     bool verifica = g->getUsuario(id)->entrar(d);
 
@@ -26,6 +22,9 @@ bool Catraca::entrar(int id, Data* d) {
 }
 
 bool Catraca::sair(int id, Data* d) {
+    
+    if(g->getQuantidade() == 0)
+        return false;
 
     bool verifica = g->getUsuario(id)->sair(d);
     
