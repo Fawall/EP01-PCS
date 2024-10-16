@@ -12,6 +12,6 @@ void menu();
 
 int main() {
 
-    testeEntradaESaidaCatraca();
+    menu();
     return 0;
 }
