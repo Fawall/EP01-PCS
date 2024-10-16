@@ -15,7 +15,7 @@ protected:
     string nome;
     Registro **registros;
     int quantidade = 0;
-    int diferenca = 0;
+    int diferenca = 0 ;
 
 public:
     Usuario(int id, string nome, int maximo);
