@@ -87,23 +87,46 @@ void testeGerenciador(){
     cout << "Quantidade: " << g->getQuantidade() << endl;
 }
 
-void testeCatraca(){
+void testeCatraca2(){
     GerenciadorDeUsuario *g = new GerenciadorDeUsuario(10);;
     Catraca* c = new Catraca(g);
+
+    bool verifica;
     
     g->adicionar(new Usuario(1,"Joao",10));
     g->adicionar(new Usuario(2,"Maria",10));
     g->adicionar(new Usuario(3,"Jose",10));
 
-    bool teste = c->entrar(1,new Data(1,1,1,1,1,2024));
-    bool teste2 = c->entrar(1,new Data(1,1,1,1,1,2024));
+    verifica = c->entrar(2,new Data(2,1,1,1,1,2024));
+    
+    if(verifica != true){
+        cout << "Erro ao entrar" << endl;
+    }else{
 
-    if(teste2 != true){
-        cout << "Nao entrou" << endl;
+    cout << "Entrou" << endl;
     }
-    else {
-        cout << "Entrou" << endl;
+
+    verifica = c->sair(2,new Data(3,1,1,1,1,2024));
+    
+    if(verifica != true){
+        cout << "Erro ao sair" << endl;
     }
+    cout << "Saiu" << endl;
+
+}
+
+void testeCatraca(){
+    GerenciadorDeUsuario *g = new GerenciadorDeUsuario(10);;
+    Catraca* c = new Catraca(g);
+
+    bool verifica;
+    
+    g->adicionar(new Usuario(1,"Fabio",10));
+
+    verifica = c->entrar(2,new Data(2,1,1,1,1,2024));
+
+
+
 
 }
 
