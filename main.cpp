@@ -16,7 +16,7 @@ int main() {
     // testeEntradaESaidaCatraca();
     menu();
     // testeManual();
-    // testeCatraca();
+    // testeCatraca2();
     // testeGetHorasTrabalhadas();
     return 0;
 }
