@@ -14,34 +14,25 @@ this->dia = dia;
 this->mes = mes;
 this->ano = ano;
 
+this->dataTM->tm_hour = hora;
+this->dataTM->tm_min = minuto;
+this->dataTM->tm_sec = segundo;
+this->dataTM->tm_isdst = 0;
+this->dataTM->tm_mday = dia;
+this->dataTM->tm_mon = mes - 1;
+this->dataTM->tm_year = ano - 1900;
+
 }
 
 Data::~Data(){}
 
 
-int Data::diferenca(Data* d) {
-    tm d1 = {};
-    d1.tm_hour = this->hora;
-    d1.tm_min = this->minuto;
-    d1.tm_sec = this->segundo;
-    d1.tm_isdst = 0;
-    d1.tm_mday = this->dia;
-    d1.tm_mon = this->mes - 1;
-    d1.tm_year = this->ano - 1900;
+int Data::diferenca(Data* d) {    
 
-    tm d2 = {};
-    d2.tm_hour = d->hora;
-    d2.tm_min = d->minuto;
-    d2.tm_sec = d->segundo;
-    d2.tm_isdst = 0;
-    d2.tm_mday = d->dia;
-    d2.tm_mon = d->mes - 1;
-    d2.tm_year = d->ano - 1900;
+    time_t data1 = mktime(dataTM);
+    time_t dataUltimoRegistro = mktime(d->dataTM);
 
-    time_t t1 = mktime(&d1);
-    time_t t2 = mktime(&d2);
-
-    return difftime(t1, t2);
+    return difftime(data1, dataUltimoRegistro);
 }
 
 
