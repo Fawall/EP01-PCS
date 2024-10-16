@@ -7,11 +7,12 @@ void testeCatraca2();
 void testeEntradasESaidas();
 void testeEntradaESaidaCatraca();
 void testeGetHorasTrabalhadas();
+int diferenca();
 
 void menu();
 
 int main() {
 
-    menu();
+    diferenca();
     return 0;
 }
