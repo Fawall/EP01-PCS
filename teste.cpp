@@ -90,8 +90,8 @@ void testeGerenciador()
 void testeCatraca2()
 {
     GerenciadorDeUsuario *g = new GerenciadorDeUsuario(10);
+    Catraca *c = new Catraca(g);
 
-<<<<<<< HEAD
     bool verifica;
     
     g->adicionar(new Usuario(1,"Joao",10));
@@ -111,9 +111,6 @@ void testeCatraca2()
         cout << "Erro ao sair" << endl;
     }
     cout << "Saiu" << endl;
-=======
-    Catraca *c = new Catraca(g);
->>>>>>> main
 
     cout << c->entrar(1, new Data(1, 1, 1, 1, 1, 2024));
 }

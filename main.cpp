@@ -14,14 +14,10 @@ void menu();
 
 int main() {
 
-<<<<<<< HEAD
-    diferenca();
-=======
     // testeEntradaESaidaCatraca();
     menu();
     // testeManual();
     // testeCatraca2();
     // testeGetHorasTrabalhadas();
->>>>>>> main
     return 0;
 }

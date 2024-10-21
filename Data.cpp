@@ -27,32 +27,12 @@ this->dataTM->tm_year = ano - 1900;
 Data::~Data(){}
 
 
-<<<<<<< HEAD
-int Data::diferenca(Data* d) {
-
-    time_t t1;
-    time(&t1);
-    
-    tm d1 = {};
- 
-    d1.tm_sec = d->segundo;
-    d1.tm_min = d->minuto;
-    d1.tm_hour = d->hora;
-    d1.tm_mday = d->dia;
-    d1.tm_mon = d->mes;
-    d1.tm_year = d->ano;
-
-    time_t t2 = mktime(&d1);
-
-    return difftime(t1, t2);
-=======
 int Data::diferenca(Data* d) {    
 
     time_t data1 = mktime(dataTM);
     time_t dataUltimoRegistro = mktime(d->dataTM);
 
     return difftime(data1, dataUltimoRegistro);
->>>>>>> main
 }
 
 
