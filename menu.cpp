@@ -32,6 +32,7 @@ void menu()
         cin >> escolha;
         // escolha = 3;
 
+        cout << endl;
         switch (escolha)
         {
         case 1:
@@ -58,19 +59,16 @@ void menu()
             verifica = catracaEntrar->entrar(id, d);
             if (verifica != true)
             {
-                cout << "[Entrada] Catraca " << catraca << " travada" << endl
-                     << endl;
+                cout << "[Entrada] Catraca " << catraca << " travada" << endl << endl;
                 break;
             }
-            cout << "[Entrada] Catraca " << catraca << " abriu: id " << id << endl
-                 << endl;
-
-            cout << endl;
+            cout << "[Entrada] Catraca " << catraca << " abriu: id " << id << endl << endl;
 
             break;
         }
         case 2:
         {
+            // cout << endl;
             int catraca, id, hora, minuto, segundo, dia, mes, ano = 0;
             cout << "Catraca: ";
             cin >> catraca;
@@ -95,17 +93,16 @@ void menu()
 
             if (verifica != true)
             {
-                cout << "[Saida] Catraca " << catraca << " travada" << endl
-                     << endl;
+                cout << "[Saida] Catraca " << catraca << " travada" << endl << endl;
                 break;
             }
 
-            cout << "[Saida] Catraca " << catraca << " abriu: id " << id << endl
-                 << endl;
+            cout << "[Saida] Catraca " << catraca << " abriu: id " << id << endl << endl;
             break;
         }
         case 3:
         {
+            // cout << endl;
             cout << "Entrada (e) ou Saida (s)? ";
             char opcao;
             cin >> opcao;
@@ -134,14 +131,12 @@ void menu()
 
                 if (ver != true)
                 {
-                    cout << "Erro ao registrar entrada manual" << endl
-                         << endl;
+                    cout << "Erro ao registrar entrada manual" << endl << endl;
                     break;
                 }
                 else
                 {
-                    cout << "Entrada manual registrada: id " << id << endl
-                         << endl;
+                    cout << "Entrada manual registrada: id " << id << endl << endl;
                     break;
                 }
             }
@@ -169,14 +164,12 @@ void menu()
 
                 if (ver != true)
                 {
-                    cout << "Erro ao registrar saida manual" << endl
-                         << endl;
+                    cout << "Erro ao registrar saida manual" << endl << endl;
                     break;
                 }
                 else
                 {
-                    cout << "Saida manual registrada: id " << id << endl
-                         << endl;
+                    cout << "Saida manual registrada: id " << id << endl << endl;
                 }
 
                 break;
@@ -184,6 +177,7 @@ void menu()
         }
         case 4:
         {
+            // cout << endl;
             int id = 0;
             cout << "Id: ";
             cin >> id;
@@ -204,21 +198,22 @@ void menu()
             break;
         }
         case 5:
-        {
+        {   
             int mes, ano = 0;
 
-            cout << "mes: ";
+            cout << "Mes: ";
             cin >> mes;
 
-            cout << "ano: ";
+            cout << "Ano: ";
             cin >> ano;
-
+            cout << endl;
+            
             cout << "Relatorio de horas trabalhadas" << endl;
             for (int i = 0; i < g->getQuantidade(); i++)
             {
                 cout << g->getUsuarios()[i]->getNome() << ": " << g->getUsuarios()[i]->getHorasTrabalhadas(mes, ano) << endl;
             }
-
+            cout << endl;
             break;
         }
 
