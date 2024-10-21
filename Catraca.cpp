@@ -31,10 +31,9 @@ bool Catraca::sair(int id, Data* d) {
     if(g->getUsuario(id) != nullptr && verifica == true){
         return true;
     }
-    else{
-        return false;
-   
-    }
+    
+    return false;
+
 }
 
 Catraca::~Catraca() { }
