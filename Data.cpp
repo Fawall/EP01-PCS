@@ -14,11 +14,20 @@ this->dia = dia;
 this->mes = mes;
 this->ano = ano;
 
+this->dataTM->tm_hour = hora;
+this->dataTM->tm_min = minuto;
+this->dataTM->tm_sec = segundo;
+this->dataTM->tm_isdst = 0;
+this->dataTM->tm_mday = dia;
+this->dataTM->tm_mon = mes - 1;
+this->dataTM->tm_year = ano - 1900;
+
 }
 
 Data::~Data(){}
 
 
+<<<<<<< HEAD
 int Data::diferenca(Data* d) {
 
     time_t t1;
@@ -36,6 +45,14 @@ int Data::diferenca(Data* d) {
     time_t t2 = mktime(&d1);
 
     return difftime(t1, t2);
+=======
+int Data::diferenca(Data* d) {    
+
+    time_t data1 = mktime(dataTM);
+    time_t dataUltimoRegistro = mktime(d->dataTM);
+
+    return difftime(data1, dataUltimoRegistro);
+>>>>>>> main
 }
 
 

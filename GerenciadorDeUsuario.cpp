@@ -1,6 +1,5 @@
 #include "GerenciadorDeUsuario.h"
 #include "Usuario.h"
-#include "Registro.h"
 
 using namespace std;
 
