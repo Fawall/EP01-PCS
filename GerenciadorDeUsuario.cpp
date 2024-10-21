@@ -10,31 +10,35 @@ GerenciadorDeUsuario::GerenciadorDeUsuario(int maximo) {
 }
 
 GerenciadorDeUsuario::~GerenciadorDeUsuario(){
-    for(int i = 0; i < quantidade; i++){
+    int quantidadeGU = getQuantidade();
+    
+    for(int i = 0; i < quantidadeGU; i++){
         delete usuarios[i];
     }
     delete[] usuarios;
 }
 
 bool GerenciadorDeUsuario::adicionar(Usuario* u) {
-    if(quantidade >= maximo) {
+    int quantidadeGU = getQuantidade();
+    if(quantidadeGU >= maximo) {
         return false;
     }
 
-    for(int i = 0; i < quantidade; i++) {
+    for(int i = 0; i < quantidadeGU; i++) {
         if(usuarios[i]->getId() == u->getId()) {
             return false;
         }
     }
 
-    usuarios[quantidade] = u;
+    usuarios[quantidadeGU] = u;
     quantidade++;
 
     return true;
 }
 
 Usuario* GerenciadorDeUsuario::getUsuario(int id) {
-    for(int i = 0; i < quantidade; i++) {
+    int quantidadeGU = getQuantidade();
+    for(int i = 0; i < quantidadeGU; i++) {
         if(usuarios[i]->getId() == id) {
             return usuarios[i];
         }
