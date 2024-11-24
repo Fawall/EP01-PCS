@@ -28,7 +28,7 @@ bool Usuario::entrar(Data *d)
         return false;
     }
 
-    if (quantidade == 0)
+    if (atualQnt == 0)
     {
         registros[atualQnt] = new Registro(d, true, false);
         quantidade++;
@@ -41,11 +41,11 @@ bool Usuario::entrar(Data *d)
 
     if (ultimoRegistroEntrada == false && diferenca > 0)
     {
-        registros[quantidade] = new Registro(d, true, false);
+        registros[atualQnt] = new Registro(d, true, false);
         quantidade++;
         return true;
     }
-    // registros[quantidade] = nullptr;
+    registros[atualQnt] = nullptr;
     return false;
 }
 
@@ -57,9 +57,7 @@ bool Usuario::sair(Data *d)
         return false;
     }
 
-    // int ultimoRegistroData = registros[quantidade]->getData()->diferenca(registros[quantidade]->getData());
     bool ultimoRegistroEntrada = registros[atualQnt - 1]->isEntrada();
-
 
     int diferenca = d->diferenca(registros[atualQnt-1]->getData());
 
@@ -69,6 +67,7 @@ bool Usuario::sair(Data *d)
         quantidade++;
         return true;
     }
+    registros[atualQnt] = nullptr;
 
     return false;
 }
@@ -93,12 +92,13 @@ bool Usuario::registrarEntradaManual(Data *d)
     
     int diferenca = d->diferenca(registros[atualQnt-1]->getData());
 
-    if (ultimoRegistroEntrada == false && diferenca < 0)
+    if (ultimoRegistroEntrada == false && diferenca > 0)
     {
         registros[atualQnt] = new Registro(d, true, true);
         quantidade++;
         return true;
     }
+
     registros[atualQnt] = nullptr;
     return false;
 }
@@ -112,14 +112,13 @@ bool Usuario::registrarSaidaManual(Data *d)
         return false;
     }
 
-    // int ultimoRegistroData = registros[quantidade]->getData()->diferenca(registros[quantidade]->getData());
     bool ultimoRegistroEntrada = registros[atualQnt - 1]->isEntrada();
     
     int diferenca = d->diferenca(registros[atualQnt-1]->getData());
 
     if (ultimoRegistroEntrada == true && diferenca > 0)
     {
-        registros[atualQnt] = new Registro(d, false, false);
+        registros[atualQnt] = new Registro(d, false, true);
         quantidade++;
         return true;
     }

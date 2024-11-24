@@ -11,11 +11,12 @@ bool Catraca::entrar(int id, Data* d) {
     if(g->getQuantidade() == 0)
         return false;
 
-    bool verifica = g->getUsuario(id)->entrar(d);
+    bool verificaSeUsuarioExiste = g->getUsuario(id);
 
-    if(g->getUsuario(id) != nullptr && verifica != false){
-        g->getUsuario(id)->entrar(d); 
-        return true;
+    if(verificaSeUsuarioExiste == true){
+        if(g->getUsuario(id)->entrar(d) == true)
+            return true;
+        return false;
     }
     return false;
     
@@ -26,15 +27,16 @@ bool Catraca::sair(int id, Data* d) {
     if(g->getQuantidade() == 0)
         return false;
 
-    bool verifica = g->getUsuario(id)->sair(d);
+    bool verificaSeUsuarioExiste = g->getUsuario(id);
     
-    if(g->getUsuario(id) != nullptr && verifica == true){
-        return true;
-    }
-    else{
+    if(verificaSeUsuarioExiste == true){
+        if(g->getUsuario(id)->sair(d) == true)
+            return true;
         return false;
-   
     }
+    
+    return false;
+
 }
 
 Catraca::~Catraca() { }
